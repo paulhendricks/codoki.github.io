@@ -1,0 +1,36 @@
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+relative_permalinks: true
+
+# Setup
+title:               Codoki
+tagline:             Useful resources for designers and developers
+url:                 codoki.github.io
+paginate:            1
+baseurl:             ""
+pages_list:
+    Resources: '/resources'
+    Learning: '/learning'
+    About: '/about'
+    Archive: '/archive'
+    Feed: '/atom.xml'
+
+# Assets
+#
+# We specify the directory for Jekyll so we can use @imports.
+sass:
+  sass_dir:          _sass
+  style:            :compressed
+
+# About/contact
+author:
+  name:              Chris Diana
+  url:               https://chrisdianamedia.com
+  email:             cdiana.media@gmail.com
+
+# Custom vars
+version:             1.0.0
+github:
+  repo:             https://github.com/codoki
