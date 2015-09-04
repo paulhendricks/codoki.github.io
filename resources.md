@@ -1,6 +1,6 @@
 ---
-layout: page
-title: Dev Resources
+layout: default
+title: Resources
 ---
 
 ### Examples and Blueprints
