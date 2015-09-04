@@ -11,9 +11,9 @@ relative_permalinks: true
 # Setup
 title:               Codoki
 tagline:             'Tutorials, resources and tips for web developers and designers'
-url:                 codoki.github.io
+url:                 codoki.com
+baseurl:
 paginate:            10
-baseurl:             /
 
 # About/contact
 author:
