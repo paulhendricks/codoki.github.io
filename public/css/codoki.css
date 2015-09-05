@@ -1,4 +1,4 @@
-/*  		   _     _   _ 
+/*  		   _     _   _
  *	 ___ ___ _| |___| |_|_|
  *	|  _| . | . | . | '_| |
  *	|___|___|___|___|_,_|_|
@@ -20,6 +20,14 @@
  	font-family: 'Source Code Pro', ;
  	font-size: 16px;
  }
+
+ pre {
+    background: #272727;
+    margin: 0 -9999rem;
+    padding: 1.25rem 9999rem;
+    background: #272727;
+    line-height: 1.6;
+}
 
 
 /* Sidebar */
@@ -117,6 +125,7 @@ ul.archive-list {
     padding: 1.25rem 1.75rem;
     color: #505050;
     background-color: #fff;
+    border-radius: 0px;
 }
 
 /* Search */
