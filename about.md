@@ -3,6 +3,7 @@ layout: default
 title: About
 ---
 
+<img class="profile-pic" src="http://cdmedia.github.io/public/img/chris.png" />
 <p class="message">
 Hello, my name is Chris Diana!
 I am a web developer and designer with a passion for innovative technology. In my freetime,
@@ -13,7 +14,8 @@ I enjoy experimenting with the latest web trends and sharing it all here.
 
 ### Contact
 
-Feel free to contact me at cdiana.media@gmail.com.
+Feel free to contact me at cdiana.media@gmail.com or checkout my
+<a target="_blank" href="http://chrisdianamedia.com">portfolio</a>.
 
 <ul class="about-social-links">
 	<li style="width:33.33%;"><a target="_blank" href="http://chrisdianamedia.com"><i class="fa fa-desktop fa-lg"></i></a></li>

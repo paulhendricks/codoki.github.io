@@ -81,7 +81,7 @@ to going through it step by step. In your `index.php` file add this lines. This
 will require the framework, register the autoloader and instantiate the Slim
 application. Also, we are requiring the NotORM library for handling the database.
 
-```
+{% highlight php startinline %}
 /* Require Slim and plugins */
 require 'Slim/Slim.php';
 require 'plugins/NotORM.php';
@@ -89,13 +89,13 @@ require 'plugins/NotORM.php';
 /* Register autoloader and instantiate Slim */
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
-```
+{% endhighlight %}
 
 ### 5. NotORM Database Configuration
 
 We need to setup the NotORM library so it can talk with the database:
 
-```
+{% highlight php startinline %}
 /* Database Configuration */
 $dbhost   = 'localhost';
 $dbuser   = 'root';
@@ -106,7 +106,7 @@ $dbmethod = 'mysql:dbname=';
 $dsn = $dbmethod.$dbname;
 $pdo = new PDO($dsn, $dbuser, $dbpass);
 $db = new NotORM($pdo);
-```
+{% endhighlight %}
 
 ### 6. Setup our first Route
 
@@ -114,7 +114,7 @@ Now we are going to setup a HTTP GET route for the home URL. In this step, we
 will actually be able to start to see our application work. Below the database
 configuration add:
 
-```
+{% highlight php startinline %}
 /* Routes */
 $app->get('/', function(){
     echo 'Home - My Slim Application';
@@ -122,7 +122,7 @@ $app->get('/', function(){
 
 /* Run the application */
 $app->run();
-```
+{% endhighlight %}
 
 If you visit `http://localhost/slim-cars/` you should now see your home message
 from above.
@@ -138,7 +138,7 @@ database. We are going to create a new route so that when a user (or device) hit
 your base url and then `/cars`, it will return a list of all cars in the database in
 JSON format. Right below your `home` route (and above the `$app->run()`) add:
 
-```
+{% highlight php startinline %}
 // Get all cars
 $app->get('/cars', function() use($app, $db){
     $cars = array();
@@ -153,7 +153,7 @@ $app->get('/cars', function() use($app, $db){
     $app->response()->header("Content-Type", "application/json");
     echo json_encode($cars, JSON_FORCE_OBJECT);
 });
-```
+{% endhighlight %}
 
 Here is what happens: First, we tell Slim we are setting up a HTTP GET Route
 `/cars`. We add paramaters `$app` and `$db` to tell Slim to use the Slim app and
@@ -188,7 +188,7 @@ Content-Type: application/json
 We've setup a route to get all the cars, but what if we just want a single car?
 We'll follow a similar structure as above:
 
-```
+{% highlight php startinline %}
 // Get a single car
 $app->get('/cars/:id', function($id) use ($app, $db) {
     $app->response()->header("Content-Type", "application/json");
@@ -208,7 +208,7 @@ $app->get('/cars/:id', function($id) use ($app, $db) {
         ));
     }
 });
-```
+{% endhighlight %}
 
 Similar to getting all the cars, we create a GET Route but this time we have a
 callback argument `:id` added after `cars/`. This id is passed into the function
@@ -241,7 +241,7 @@ We retrieved cars from the database, but what about adding a new one? We will be
 using the POST web service to signal creation of a new car in the database. To
 do this, let's add this below the `Get a single car` route:
 
-```
+{% highlight php startinline %}
 // Add a new car
 $app->post('/car', function() use($app, $db){
     $app->response()->header("Content-Type", "application/json");
@@ -249,7 +249,7 @@ $app->post('/car', function() use($app, $db){
     $result = $db->cars->insert($car);
     echo json_encode(array('id' => $result['id']));
 });
-```
+{% endhighlight %}
 
 Let's use cURL to try adding a new car.
 
@@ -264,7 +264,7 @@ If you log back into MySQL, you should now see your new car added to the databas
 Now we are going to add an UPDATE route in order to edit current cars in the
 database. To do this, we are going to be using the PUT method:
 
-```
+{% highlight php startinline %}
 // Update a car
 $app->put('/car/:id', function($id) use($app, $db){
     $app->response()->header("Content-Type", "application/json");
@@ -284,7 +284,7 @@ $app->put('/car/:id', function($id) use($app, $db){
         ));
     }
 });
-```
+{% endhighlight %}
 
 Similar to getting a single car, we are using a callback argument `:id` to tell
 the application which car we want to edit. We then grab the car with the correct
@@ -302,7 +302,7 @@ curl -X PUT -d "year=2015&make=Lamborghini&model=700-4" http://localhost/slim-ca
 The last thing we need to be able to do is remove a car. We are going to be using
 the DELETE method to remove cars. Here's how we are going to setup our DELETE route:
 
-```
+{% highlight php startinline %}
 // Remove a car
 $app->delete('/car/:id', function($id) use($app, $db){
     $app->response()->header("Content-Type", "application/json");
@@ -321,7 +321,7 @@ $app->delete('/car/:id', function($id) use($app, $db){
         ));
     }
 });
-```
+{% endhighlight %}
 
 Similar to above, we are using the callback argument to get a specific car by their
 id. Then, we find that car in the database and delete it using NotORM's `delete()`

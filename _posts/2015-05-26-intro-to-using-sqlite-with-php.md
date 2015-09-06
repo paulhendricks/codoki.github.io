@@ -56,9 +56,7 @@ Now we are going to select some data from the SQLite database using PHP's built
 in PDO function. Create a new PHP file and use this function to connect using
 PDO:
 
-```
-<?php
-
+{% highlight php startinline %}
 // General database query
 function dbQuery($sql)
 {
@@ -85,7 +83,7 @@ function dbQuery($sql)
 
 	return $objects;
 }
-```
+{% endhighlight %}
 
 You can read through the comments of the function to see how it all works, but basically what happens
 here is the function queries the database and loops through looking for the specified parameters.
@@ -93,27 +91,27 @@ here is the function queries the database and loops through looking for the spec
 Next, lets create a function that will get all the cars in the database. Just below the `dbQuery` function,
 add this:
 
-```
+{% highlight php startinline %}
 function getAllCars()
 {
 	$sql = "SELECT * FROM garage";
 	$cars = dbQuery($sql);
 	return $cars;
 }
-```
+{% endhighlight %}
 
 Here we are calling our `dbQuery` function using the select all statement as our function parameter. Now
 if we add this just below our `getAllCars` function and run the PHP file, the output should show all the
 cars in the database:
 
-```
+{% highlight php startinline %}
 $cars = getAllCars();
 var_dump($cars);
-```
+{% endhighlight %}
 
 We'll add one more function in order to narrow down our search, a query by param function:
 
-```
+{% highlight php startinline %}
 function getCarsByParam($param, $search=NULL)
 {
 	if($search)
@@ -127,15 +125,15 @@ function getCarsByParam($param, $search=NULL)
 	$cars = dbQuery($sql);
 	return $cars;
 }
-```
+{% endhighlight %}
 
 Here we will be searching the database for a term like the `$search` term and a param like the `$param`. Add this
 below the `getCarsByParam` function to test it out:
 
-```
+{% highlight php startinline %}
 $cars = getCarsByParam('year', '1991');
 var_dump($cars);
-```
+{% endhighlight %}
 
 That about wraps it up for a nice intro to using PHP with SQLite. Make sure to take a look at the [links](http://cdmedia.github.io/links/) page
 for further reading and resources.

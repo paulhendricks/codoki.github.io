@@ -68,7 +68,7 @@ mv slim-cars/ api/
 Now that we have our structure in place, let's get the front-end HTML template
 made. Add this to your `index.html` file:
 
-```
+{% highlight html %}
 <DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,7 +117,7 @@ made. Add this to your `index.html` file:
   <script src="js/script.js"></script>
 </body>
 </html>
-```
+{% endhighlight %}
 
 Couple things to point out here: We created a sidebar where we will list all of
 the cars in our garage in the `<ul id="car-list"></ul>` element. Next, we have a
@@ -131,7 +131,7 @@ and `<a class="button" href="#" id="btnDelete">Delete</a>` buttons.
 Finally, we'll apply some CSS to clean it up a bit for future steps. Add these
 few lines to your `css/style.css` file:
 
-```
+{% highlight css %}
 .main {
 	margin-top: 25px;
 }
@@ -157,7 +157,7 @@ ul#car-list {
 #car-list li:last-child {
 	border-bottom: 0px solid #eee;
 }
-```
+{% endhighlight %}
 
 ### 4. Start working with the API - Get all cars
 
@@ -167,7 +167,7 @@ be working in your `js/script.js` file. In that file, we are going to
 initialize Zepto.js and setup our root URL for our API. In addition, we will
 add a `ajaxBeforeSend` function which may be useful when debugging AJAX calls.
 
-```
+{% highlight js %}
 Zepto(function($){
 
 	// Setup the root url for the RESTful services
@@ -180,13 +180,13 @@ Zepto(function($){
 	});
 
 });
-```
+{% endhighlight %}
 
 We are going to using AJAX for all our calls to our API. The first thing we need
 to do is get a list of all cars in the database. Just below the `ajaxBeforeSend`
 function add this:
 
-```
+{% highlight js %}
 // Retrieve car list when application starts
 findAll();
 
@@ -213,7 +213,7 @@ function renderList(data) {
 		$('#car-list').append('<li><a href="#" data-identity="' + car.id + '">' + car.model + '</a></li>');
 	});
 }
-```
+{% endhighlight %}
 
 First, we are calling the `findAll()` function as soon as the application loads, this way
 we have a list of cars when the user first visits the app. Next part is the actual `findAll()`
@@ -231,7 +231,7 @@ in your database.
 Now we have all the cars, but if we need to get a car by just the ID, we can use our API by calling the ID
 after the url like `cars/3`. Now we are going to create an AJAX call which will get a car by id:
 
-```
+{% highlight js %}
 // Get car by id
 function findById(id) {
 	console.log('findById:' + id);
@@ -250,7 +250,7 @@ function findById(id) {
 		}
 	});
 }
-```
+{% endhighlight %}
 
 Similarly to above, we are using the AJAX with the GET method to get a car... but unlike above,
 our `findByID()` function takes an input parameter of `id`. This function will call the url
@@ -263,25 +263,25 @@ detail view will be using the form to display the current car.
 
 Let's initialize a `currentCar` variable just below our `rootURL` variable:
 
-```
+{% highlight js %}
 var currentCar;
-```
+{% endhighlight %}
 
 Now, we need a way for our form to render a car's details when a car is selected from the sidebar.
 Add this line just below the `findAll()` function
 
-```
+{% highlight js %}
 // Retrieve car details when list item is clicked
 $('#car-list a').live('click', function() {
 	findById($(this).data('identity'));
 });
-```
+{% endhighlight %}
 
 Finally, we add a `renderDetails()` function which takes a car as an input. This function then
 populates our form with the car data. (This also fixes whether we have an empty object and
 blanks out the form).
 
-```
+{% highlight js %}
 // Render detail view
 function renderDetails(car) {
 	if($.isEmptyObject(car)){
@@ -296,7 +296,7 @@ function renderDetails(car) {
 		$('#model').val(car.model);
 	}
 }
-```
+{% endhighlight %}
 
 Now if you view your application, you will see if you click on one of your car items,
 the form fields should populate with the data.
@@ -306,7 +306,7 @@ the form fields should populate with the data.
 First, we need to have our form clear out once the 'New Car' button is clicked. Add this just
 above your `findAll()` function.
 
-```
+{% highlight js %}
 // Call new car function when button is clicked
 $('#btnAdd').click(function() {
 	newCar();
@@ -319,12 +319,12 @@ function newCar() {
 	currentCar = {};
 	renderDetails(currentCar); // Display empty form
 }
-```
+{% endhighlight %}
 
 Next, we need to get the form data from the HTML form in order to URL encode this data
 and place it in our request. Place this just below the `renderDetails()` function.
 
-```
+{% highlight js %}
 // Helper function to get form fields
 function getForm() {
 	var car = {
@@ -334,12 +334,12 @@ function getForm() {
 	};
 	return car;
 }
-```
+{% endhighlight %}
 
 In order to add a car, we will be using Zepto's `$.ajax` method, but instead of using `GET` we will use `POST` as a parameter.
 This tells Zepto to use HTTP POST method. Add the `addCar()` function just below `findById()`
 
-```
+{% highlight js %}
 // Add new car
 function addCar() {
 	console.log('addCar');
@@ -360,7 +360,7 @@ function addCar() {
 		}
 	});
 }
-```
+{% endhighlight %}
 
 What happens here is the function sends a HTTP POST request to our API ('http://localhost/slim-cars/api/car') and
 URI encodes our form field values so that our API can understand them. Then on success, the browser
@@ -371,7 +371,7 @@ to display our newly added car using our `findAll()` function.
 Now, we need to be able to send the POST request from the front end. Tie this function to your `#btnSave` button.
 Add this just below `$('#btnAdd').click(function() {...`.
 
-```
+{% highlight js %}
 // Call add car function when save button is clicked
 $('#btnSave').click(function() {
 	if($('#id').val() == ''){
@@ -381,7 +381,7 @@ $('#btnSave').click(function() {
 	}
 	return false;
 });
-```
+{% endhighlight %}
 
 Now you can try adding a car by filling in the form and clicking the 'Save' button.
 Note that we haven't added the `updateCar()` method yet...but don't worry it's next.
@@ -391,7 +391,7 @@ Note that we haven't added the `updateCar()` method yet...but don't worry it's n
 Now we need a way to update a car currently in the database. We will be using HTTP PUT
 method in order to update from our API. Just below your `addCar()` function add:
 
-```
+{% highlight js %}
 // Update a car
 function updateCar($id) {
 	console.log('updateCar');
@@ -410,7 +410,7 @@ function updateCar($id) {
 		}
 	});
 }
-```
+{% endhighlight %}
 
 Similar to the `addCar()` function, we are URI encoding our form data so our API can
 understand what to do. The function uses our form field 'id' value in order to build
@@ -428,15 +428,15 @@ Now we need to be able to delete a car. Since no car is in the detail view
 when the application loads, let's hide the delete file on inital load. Add
 this just below `findAll()`.
 
-```
+{% highlight js %}
 // Nothing to delete in initial application state
 $('#btnDelete').hide();
-```
+{% endhighlight %}
 
 Now we will use the HTTP DELETE method to delete a car by a specified id. Add
 this just below the `addCar()` function.
 
-```
+{% highlight js %}
 // Delete a car
 function deleteCar($id) {
 	console.log('deleteCar');
@@ -454,7 +454,7 @@ function deleteCar($id) {
 		}
 	})
 }
-```
+{% endhighlight %}
 
 Similar to the other ajax functions, we generate a URL using the current form field id ('http://localhost/slim-cars/api/car/3').
 Then, the function calls the HTTP DELETE method. On success, the browser alerts that the car was successfully deleted, blanks out the
@@ -462,13 +462,13 @@ form using our `newCar()` method and reloads the car list using our `findAll()` 
 
 Now just tie this function into the frontend using our `#btnDelete` button. Add this just below `$('#btnAdd').click(function() {...`
 
-```
+{% highlight js %}
 // Call delete car function when button is clicked
 $('#btnDelete').click(function() {
 	deleteCar();
 	return false;
 });
-```
+{% endhighlight %}
 
 ### 9. Conclusion
 
