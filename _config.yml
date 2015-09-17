@@ -10,7 +10,7 @@ relative_permalinks: true
 
 # Setup
 title:               Codoki
-tagline:             'Tutorials, resources and tips for web developers and designers'
+tagline:             'Tutorials, resources and tips for Web Developers'
 url:                 codoki.com
 baseurl:
 paginate:            10
