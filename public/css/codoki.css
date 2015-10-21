@@ -121,6 +121,9 @@ ul.tag-box  {
 	color: #83b5fa;
 	text-decoration: none;
 }
+li.tag_list_item {
+	line-height: 26px;
+}
 
 /* Archive */
 ul.archive-list {

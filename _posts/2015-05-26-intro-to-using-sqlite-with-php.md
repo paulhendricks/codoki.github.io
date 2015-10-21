@@ -135,5 +135,5 @@ $cars = getCarsByParam('year', '1991');
 var_dump($cars);
 {% endhighlight %}
 
-That about wraps it up for a nice intro to using PHP with SQLite. Make sure to take a look at the [links](http://cdmedia.github.io/links/) page
+That about wraps it up for a nice intro to using PHP with SQLite. Make sure to take a look at the [links](http://codoki.github.io/links/) page
 for further reading and resources.
