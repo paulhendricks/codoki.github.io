@@ -30,6 +30,10 @@ a.logo {
 	border-radius: 50%;
 	background-image: -webkit-gradient(linear,0% 0%,40% 100%,from(#FFA32C),to(#99c9ff));
 }
+a.logo:hover {
+    text-decoration: none;
+    color: #434343;
+}
 
 pre {
 	background: #272727;
