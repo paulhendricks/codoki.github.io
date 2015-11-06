@@ -4,29 +4,39 @@
  *	|___|___|___|___|_,_|_|
  */
 
- @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro);
 
 .masthead {
-    background-color: #282828;
-    border-bottom: 1px solid #575757;
+	background-color: #282828;
+	border-bottom: 1px solid #575757;
 }
 
- .masthead-title a {
- 	font-family: 'Source Code Pro', ;
- 	padding-right: 10px;
- 	color: #68C0FF;
- }
- .masthead-title small {
- 	font-family: 'Source Code Pro', ;
- 	font-size: 16px;
- }
+.masthead-title a {
+	font-family: 'Source Code Pro', ;
+	padding-right: 10px;
+	color: #68C0FF;
+}
+.masthead-title small {
+	font-family: 'Source Code Pro', ;
+	font-size: 16px;
+}
 
- pre {
-    background: #272727;
-    margin: 0 -9999rem;
-    padding: 1.25rem 9999rem;
-    background: #272727;
-    line-height: 1.6;
+a.logo {
+	background: #4D4D4D;
+	font-size: bold;
+	padding: 5px 9px 8px 9px;
+	margin-right: 13px;
+	color: #101010;
+	border-radius: 50%;
+	background-image: -webkit-gradient(linear,0% 0%,40% 100%,from(#FFA32C),to(#99c9ff));
+}
+
+pre {
+	background: #272727;
+	margin: 0 -9999rem;
+	padding: 1.25rem 9999rem;
+	background: #272727;
+	line-height: 1.6;
 }
 
 img.profile-pic {
